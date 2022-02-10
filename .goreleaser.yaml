@@ -31,6 +31,12 @@ changelog:
       - '^docs:'
       - '^test:'
 
+source:
+  enabled: true
+
+gomod:
+  proxy: true
+
 dockers:
   - image_templates:
     - 'ghcr.io/goturkiye/goreleaser-supply-chain-example:{{ .Tag }}'
@@ -42,3 +48,8 @@ dockers:
     - "--label=org.opencontainers.image.revision={{.FullCommit}}"
     - "--label=org.opencontainers.image.version={{.Version}}"
     - "--label=org.opencontainers.image.source={{.GitURL}}"
+
+sboms:
+  - artifacts: archive
+  - id: source
+    artifacts: source
